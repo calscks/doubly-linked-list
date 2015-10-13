@@ -7,11 +7,14 @@
 typedef struct NODE
 {
 	char customer[l];
-	char intake[l];
+	char customerNum[l];
+	char gender[l];
+	char orderDes[l];
+	char customerAdd[l];
 	struct NODE *prev;
 	struct NODE *next;
 }node;
-node *head, *temp;
+node *head, *temp, *temp1, *temp2;
 
 void create()
 {
@@ -21,9 +24,18 @@ void create()
 	printf("Enter customer:\n");
 	fflush(stdin);
 	fgets(&temp->customer, l, stdin);
-	printf("Enter intake:\n");
+	printf("Enter customer number:\n");
 	fflush(stdin);
-	fgets(&temp->intake, l, stdin);
+	fgets(&temp->customerNum, l, stdin);
+	printf("Enter gender:\n");
+	fflush(stdin);
+	fgets(&temp->gender, l, stdin);
+	printf("Enter order description:\n");
+	fflush(stdin);
+	fgets(&temp->orderDes, l, stdin);
+	printf("Enter customer address:\n");
+	fflush(stdin);
+	fgets(&temp->customerAdd, l, stdin);
 }
 
 void insert()
@@ -32,6 +44,7 @@ void insert()
 	{
 		create();
 		head = temp;
+		temp1 = head;
 	}
 	else
 	{
@@ -42,12 +55,68 @@ void insert()
 	}
 }
 
+void insert2()
+{
+	if (head == NULL)
+	{
+		create();
+		head = temp;
+		temp1 = head;
+	}
+	else
+	{
+		create();
+		temp1->next = temp;
+		temp->prev = temp1;
+		temp1 = temp;
+	}
+}
+
+void display()
+{
+	temp2 = head;
+
+	if (temp2 == NULL)
+	{
+		printf("List empty to display \n");
+		return;
+	}
+	printf("\nLinked list elements from begining : \n");
+
+	while (temp2!= NULL)
+	{
+		printf("%s", temp2->customer);
+		printf("%s", temp2->customerNum);
+		printf("%s", temp2->gender);
+		printf("%s", temp2->orderDes);
+		printf("%s", temp2->customerAdd);
+		temp2 = temp2->next;
+	}
+}
+
+void display2(char a,char b,char c,char d,char e)
+{
+	if (temp2 != NULL)
+	{
+		a = temp2->customer;
+		b = temp2->customerNum;
+		c = temp2->gender;
+		d = temp2->orderDes;
+		e = temp2->customerAdd;
+		temp2 = temp2->next;
+		display2(a,b,c,d,e);
+		printf("%s%s%s%s%s", a,b,c,d,e);
+
+	}
+}
+
+
 void main()
 {
 	int choice;
 	while (1)
 	{
-		printf("1. Insert\n2. Print\nUr choice");
+		printf("1. Insert to begining\n2. Insert to ending\n3. Print\nUr choice");
 		fflush(stdin);
 		scanf("%d", &choice);
 
@@ -57,11 +126,19 @@ void main()
 			insert();
 			break;
 		case 2:
-			printf("List:\n");
-			temp = head;
-			while (temp != NULL){
-				printf("%s\n%s\n", temp->customer, temp->intake);
-				temp = temp->next;
+			insert2();
+			break;
+		case 3:
+			display();
+			break;
+		case 4:
+			temp2 = head;
+			if (temp2 == NULL)
+				printf("\nList empty to display");
+			else
+			{
+				printf("\nReverse order of linked list : \n");
+				display2(temp2->customer, temp2->customerNum, temp2->gender, temp2->orderDes, temp2->customerAdd);
 			}
 			break;
 		default:
@@ -70,3 +147,5 @@ void main()
 		}
 	}
 }
+
+
