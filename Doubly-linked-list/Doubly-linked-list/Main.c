@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #define l 100
 
+
 typedef struct NODE
 {
 	char customer[l];
@@ -10,19 +11,19 @@ typedef struct NODE
 	struct NODE *prev;
 	struct NODE *next;
 }node;
-node *head, *temp, *temp1;
+node *head, *temp;
 
 void create()
 {
-	//char customer[l];
-	//char intake[l];
 	temp = (node*)malloc(sizeof(node));
 	temp->prev = NULL;
 	temp->next = NULL;
 	printf("Enter customer:\n");
-	scanf("%s", temp->customer);
+	fflush(stdin);
+	fgets(&temp->customer, l, stdin);
 	printf("Enter intake:\n");
-	scanf("%s", temp->intake);
+	fflush(stdin);
+	fgets(&temp->intake, l, stdin);
 }
 
 void insert()
@@ -31,7 +32,6 @@ void insert()
 	{
 		create();
 		head = temp;
-		temp1 = head;
 	}
 	else
 	{
