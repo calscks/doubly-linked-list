@@ -45,7 +45,6 @@ void insert()
 void main()
 {
 	int choice;
-	printf("f");
 	while (1)
 	{
 		printf("1. Insert\n2. Print\nUr choice");
