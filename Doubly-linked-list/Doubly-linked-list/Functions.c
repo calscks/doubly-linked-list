@@ -6,7 +6,7 @@
 
 int count = 0;// we use count to determine our structures' position.
 
-void create()
+void create() //create a new struct for new customer inputs
 {
 	temp = (node*)malloc(sizeof(node));
 	temp->prev = NULL;
@@ -52,14 +52,14 @@ int validnum() //simple input checking for customerNum
 	}
 }
 
-void insertB()
+void insertB() //insert at beginning
 {
 	create();
 	if (endcus == NULL)
 	{
 		endcus = temp;
 	}
-	if (headcus)
+	if (headcus) // if headcus != NULL
 	{
 		temp->next = headcus;
 		headcus->prev = temp;
@@ -67,7 +67,7 @@ void insertB()
 	headcus = temp;
 }
 
-void insertE()
+void insertE() //insert to the end
 {
 	create();
 	if (headcus == NULL)
@@ -82,7 +82,7 @@ void insertE()
 	endcus = temp;
 }
 
-void displayB()
+void displayB() //display from beginning
 {
 	currec = headcus;
 
@@ -96,6 +96,7 @@ void displayB()
 
 	while (currec)
 	{
+		printf("%d", count); //temporary code to check count
 		printf("Customer's name:\n");
 		printf("%s", currec->customer);
 		printf("Customer's number:\n");
@@ -111,7 +112,7 @@ void displayB()
 	}
 }
 
-void displayE(char a[l], char b[l], char c[l], char d[l], char e[l])
+void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]) //display from the end
 {
 	currec = endcus;
 	while (currec)
@@ -121,6 +122,7 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l])
 		c = currec->gender;
 		d = currec->orderDes;
 		e = currec->customerAdd;
+		printf("%d", count); //temporary code to check count
 		printf("Customer's name:\n");
 		printf("%s", a);
 		printf("Customer's number:\n");
@@ -136,7 +138,7 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l])
 	}
 }
 
-void deleteNode()
+void deleteNode() //delete node at any position
 {
 	int i = 1, pos;
 
@@ -159,10 +161,13 @@ void deleteNode()
 		return; //prevent loading to next line
 	}
 
-	if (headcus != NULL)
+	if (headcus)
 	{
 		for (i; i < pos; i++)
 			currec = currec->next;
+		printf("%2d. %s", i, currec->customer);
+		printf("You gonna delete this\n");
+		system("pause >nul");
 		if (currec->next != NULL)
 			currec->next->prev = currec->prev;
 		if (currec->prev != NULL)
@@ -172,6 +177,7 @@ void deleteNode()
 		if (endcus == currec)
 			endcus = currec->prev;
 		free(currec);
+		printf("deleted\n");
 		count--;
 	}
 

@@ -1,4 +1,4 @@
-﻿Build started 18/10/2015 18:01:53.
+﻿Build started 18/10/2015 18:45:39.
      1>Project "C:\Users\User\Desktop\APU Stuffs\SEM4\DBDS\Assignment\doubly-linked-list\Doubly-linked-list\Doubly-linked-list\Doubly-linked-list.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Functions.c
@@ -13,7 +13,7 @@
      1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(28): warning C4024: 'fgets' : different types for formal and actual parameter 1
      1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(31): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[200]'
      1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(31): warning C4024: 'fgets' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(146): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(148): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  d:\microsoft visual studio 12.0\vc\include\stdio.h(283) : see declaration of 'scanf'
      1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(53): warning C4715: 'validnum' : not all control paths return a value
        Link:
@@ -24,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.33
+Time Elapsed 00:00:00.34
