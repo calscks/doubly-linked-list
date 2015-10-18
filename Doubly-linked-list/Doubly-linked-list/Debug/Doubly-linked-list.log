@@ -1,4 +1,4 @@
-﻿Build started 17/10/2015 01:23:57.
+﻿Build started 18/10/2015 18:01:53.
      1>Project "C:\Users\User\Desktop\APU Stuffs\SEM4\DBDS\Assignment\doubly-linked-list\Doubly-linked-list\Doubly-linked-list\Doubly-linked-list.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Functions.c
@@ -24,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.36
+Time Elapsed 00:00:00.33

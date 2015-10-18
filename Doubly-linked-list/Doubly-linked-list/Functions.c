@@ -55,17 +55,16 @@ int validnum() //simple input checking for customerNum
 void insertB()
 {
 	create();
-	if (headcus == NULL)
+	if (endcus == NULL)
 	{
-		headcus = temp;
 		endcus = temp;
 	}
-	else
+	if (headcus)
 	{
 		temp->next = headcus;
 		headcus->prev = temp;
-		headcus = temp;
 	}
+	headcus = temp;
 }
 
 void insertE()
@@ -74,14 +73,13 @@ void insertE()
 	if (headcus == NULL)
 	{
 		headcus = temp;
-		endcus = temp;
 	}
-	else
+	if (endcus)
 	{
 		endcus->next = temp;
 		temp->prev = endcus;
-		endcus = temp;
 	}
+	endcus = temp;
 }
 
 void displayB()
@@ -142,53 +140,97 @@ void deleteNode()
 {
 	int i = 1, pos;
 
-	printf("\nEnter position to delete:\n");
-	scanf("%d", &pos);
 	currec = headcus;
+	printf("\nEnter position to delete:\n");
+	fflush(stdin);
+	scanf("%d", &pos);
 
-	if ((pos < 1) || (pos >= count + 1))
+	if (!headcus)
 	{
-		printf("\nError : Position out of range to delete");
-		return;
+		printf("Empty list. \n");
+		system("pause >nul");
+		return; //prevent loading to next line
 	}
-	if (headcus == NULL)
+
+	if (pos < 1 || pos >= count + 1)
 	{
-		printf("\nEmpty linked list.");
-		return;
+		printf("Out of range!");
+		system("pause >nul");
+		return; //prevent loading to next line
 	}
-	else
+
+	if (headcus != NULL)
 	{
-		while (i < pos)
-		{
+		for (i; i < pos; i++)
 			currec = currec->next;
-			i++;
-		}
-		if (i == 1)
+		if (currec->next != NULL)
+			currec->next->prev = currec->prev;
+		if (currec->prev != NULL)
+			currec->prev->next = currec->next;
+		if (headcus == currec)
+			headcus = currec->next;
+		if (endcus == currec)
+			endcus = currec->prev;
+		free(currec);
+		count--;
+	}
+
+	
+
+	//i don't know why below codes have problem. So I create new codes for this as above.
+	/*
+	void deleteNode()
+	{
+		int i = 1, pos;
+
+		printf("\nEnter position to delete:\n");
+		scanf("%d", &pos);
+		currec = headcus;
+
+		if ((pos < 1) || (pos >= count + 1))
 		{
-			if (currec->next == NULL)
-			{
-				printf("Node deleted from list: %d\n", pos);
-				free(currec);
-				currec = headcus = NULL;
-				return;
-			}
-		}
-		if (currec->next == NULL)
-		{
-			currec->prev->next = NULL;
-			free(currec);
-			printf("Node deleted from list: %d\n", pos);
-			system("pause >nul");
+			printf("\nError : Position out of range to delete");
 			return;
 		}
-		currec->next->prev = currec->prev;
-		if (i != 1)
-			headcus = currec->next;
-		if (i = 1)
-			headcus = currec->next;
-		printf("\nNode deleted");
-		free(currec);
-		system("pause >nul");
-	}
-	count--;
+		if (headcus == NULL)
+		{
+			printf("\nEmpty linked list.");
+			return;
+		}
+		else
+		{
+			while (i < pos)
+			{
+				currec = currec->next;
+				i++;
+			}
+			if (i == 1)
+			{
+				if (currec->next == NULL)
+				{
+					printf("Node deleted from list: %d\n", pos);
+					free(currec);
+					currec = headcus = NULL;
+					return;
+				}
+			}
+			if (currec->next == NULL)
+			{
+				currec->prev->next = NULL;
+				free(currec);
+				printf("Node deleted from list: %d\n", pos);
+				system("pause >nul");
+				return;
+			}
+			currec->next->prev = currec->prev;
+			if (i != 1)
+				headcus = currec->next;
+			if (i = 1)
+				headcus = currec->next;
+			printf("\nNode deleted");
+			free(currec);
+			system("pause >nul");
+		}
+		count--;
+	}*/
 }

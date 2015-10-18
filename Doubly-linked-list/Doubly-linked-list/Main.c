@@ -7,7 +7,7 @@
 
 void main()
 {
-	system("color f0");
+	//system("color f0");
 	int choice;
 	while (1)
 	{
