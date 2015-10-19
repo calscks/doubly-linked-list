@@ -187,21 +187,21 @@ void deleteNode() //delete node at any position
 		return; //prevent loading to next line
 	}
 
-	if (headcus)
+	if (headcus) //if headcus != NULL
 	{
 		for (i; i < pos; i++)
 			currec = currec->next;
 		printf("%2d. %s", i, currec->customer);
-		printf("You gonna delete this\n");
+		printf("You gonna delete this\n"); //you gonna delete currec!
 		system("pause >nul");
-		if (currec->next != NULL)
-			currec->next->prev = currec->prev;
-		if (currec->prev != NULL)
-			currec->prev->next = currec->next;
-		if (headcus == currec)
-			headcus = currec->next;
-		if (endcus == currec)
-			endcus = currec->prev;
+		if (currec->next != NULL) //if next of currec got something
+			currec->next->prev = currec->prev; //before deletion, currec's next previous (currec itself) to currec's previous
+		if (currec->prev != NULL) //if prev of currec got something
+			currec->prev->next = currec->next; //before deletion, currec's previous next (currec itself) to currec's next
+		if (headcus == currec) //if deleting headcus
+			headcus = currec->next; //next of the headcus to be deleted will be the new headcus
+		if (endcus == currec) //if deleting endcus
+			endcus = currec->prev; //previous of the endcus to be deleted will be the new endcus
 		free(currec);
 		printf("deleted\n");
 		count--;
