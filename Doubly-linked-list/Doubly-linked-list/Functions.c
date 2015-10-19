@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdbool.h>
 #include "Universal.h"
 
 int count = 0;// we use count to determine our structures' position.
@@ -12,14 +13,25 @@ void create() //create a new struct for new customer inputs
 	temp->prev = NULL;
 	temp->next = NULL;
 	printf("Enter customer's name:\n");
-	fflush(stdin);
-	fgets(&temp->customer, l, stdin);
-	printf("Enter customer's number:\n");
-	fflush(stdin);
 	do
 	{
+		fflush(stdin);
+		fgets(&temp->customer, l, stdin);
+		/* funny thing is that fgets actually takes \n as 1 char! for example
+		input aaaa and then enter, the strlen will be 5 because "aaaa\n". below is the fix */
+		if (temp->customer[strlen(temp->customer) - 1] == '\n')
+			temp->customer[strlen(temp->customer) - 1] = 0;
+	} while (validchar(true));
+
+	printf("Enter customer's number:\n");
+	do
+	{
+		fflush(stdin);
 		fgets(&temp->customerNum, l, stdin);
-	} while (validnum(1));
+		if (temp->customerNum[strlen(temp->customerNum) - 1] == '\n')
+			temp->customerNum[strlen(temp->customerNum) - 1] = 0;
+	} while (validnum(true));
+
 	printf("Enter customer's gender:\n");
 	fflush(stdin);
 	fgets(&temp->gender, l, stdin);
@@ -32,7 +44,7 @@ void create() //create a new struct for new customer inputs
 	count++;
 }
 
-int validnum() //simple input checking for customerNum
+_Bool validnum() //simple input checking for customerNum
 {
 	int length, n;
 	/*int length will carry the value of the length of customerNum string.
@@ -45,11 +57,25 @@ int validnum() //simple input checking for customerNum
 		if (!isdigit(temp->customerNum[n]))
 		{
 			printf("You need to input numerical values only! Please try again\n");
-			return 1;
+			return true;
 		}
-		else
-			return 0;
 	}
+	return false;
+}
+
+_Bool validchar() //simple input checking for customer name
+{
+	int len, ch;
+	len = strlen(temp->customer);
+	for (ch = 0; ch <= len; ch++)
+	{
+		if (isdigit(temp->customer[ch]))
+		{
+			printf("Name shall not consist of numbers! Please try again\n");
+			return true;
+		}
+	}
+	return false;
 }
 
 void insertB() //insert at beginning
@@ -180,63 +206,62 @@ void deleteNode() //delete node at any position
 		printf("deleted\n");
 		count--;
 	}
-
-	
-
-	//i don't know why below codes have problem. So I create new codes for this as above.
-	/*
-	void deleteNode()
-	{
-		int i = 1, pos;
-
-		printf("\nEnter position to delete:\n");
-		scanf("%d", &pos);
-		currec = headcus;
-
-		if ((pos < 1) || (pos >= count + 1))
-		{
-			printf("\nError : Position out of range to delete");
-			return;
-		}
-		if (headcus == NULL)
-		{
-			printf("\nEmpty linked list.");
-			return;
-		}
-		else
-		{
-			while (i < pos)
-			{
-				currec = currec->next;
-				i++;
-			}
-			if (i == 1)
-			{
-				if (currec->next == NULL)
-				{
-					printf("Node deleted from list: %d\n", pos);
-					free(currec);
-					currec = headcus = NULL;
-					return;
-				}
-			}
-			if (currec->next == NULL)
-			{
-				currec->prev->next = NULL;
-				free(currec);
-				printf("Node deleted from list: %d\n", pos);
-				system("pause >nul");
-				return;
-			}
-			currec->next->prev = currec->prev;
-			if (i != 1)
-				headcus = currec->next;
-			if (i = 1)
-				headcus = currec->next;
-			printf("\nNode deleted");
-			free(currec);
-			system("pause >nul");
-		}
-		count--;
-	}*/
 }
+
+//i don't know why below codes have problem. So I create new codes for this as above.
+//anyone who can diagnose the problem i give u credit
+/*
+void deleteNode()
+{
+int i = 1, pos;
+
+printf("\nEnter position to delete:\n");
+scanf("%d", &pos);
+currec = headcus;
+
+if ((pos < 1) || (pos >= count + 1))
+{
+printf("\nError : Position out of range to delete");
+return;
+}
+if (headcus == NULL)
+{
+printf("\nEmpty linked list.");
+return;
+}
+else
+{
+while (i < pos)
+{
+currec = currec->next;
+i++;
+}
+if (i == 1)
+{
+if (currec->next == NULL)
+{
+printf("Node deleted from list: %d\n", pos);
+free(currec);
+currec = headcus = NULL;
+return;
+}
+}
+if (currec->next == NULL)
+{
+currec->prev->next = NULL;
+free(currec);
+printf("Node deleted from list: %d\n", pos);
+system("pause >nul");
+return;
+}
+currec->next->prev = currec->prev;
+if (i != 1)
+headcus = currec->next;
+if (i = 1)
+headcus = currec->next;
+printf("\nNode deleted");
+free(currec);
+system("pause >nul");
+}
+count--;
+}*/

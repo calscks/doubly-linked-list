@@ -16,7 +16,9 @@ node *headcus, *endcus, *temp, *currec;
 
 void create();
 
-int validnum();
+_Bool validnum();
+
+_Bool validchar();
 
 void insertB();
 
