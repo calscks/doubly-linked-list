@@ -50,6 +50,12 @@ _Bool validnum() //simple input checking for customerNum
 	/*int length will carry the value of the length of customerNum string.
 	For example, strlen("tttt") = 4*/
 	length = strlen(temp->customerNum);
+
+	if (length == 0)
+	{
+		printf("Please at least enter something\n");
+		return true;
+	}
 	for (n = 0; n < length; n++)
 	{
 		/*checks every characters whether one or more do carry something other than numerical value.
@@ -67,6 +73,13 @@ _Bool validchar() //simple input checking for customer name
 {
 	int len, ch;
 	len = strlen(temp->customer);
+
+	if (len == 0)
+	{
+		printf("Please at least enter something\n");
+		return true;
+	}
+
 	for (ch = 0; ch <= len; ch++)
 	{
 		if (isdigit(temp->customer[ch]))
