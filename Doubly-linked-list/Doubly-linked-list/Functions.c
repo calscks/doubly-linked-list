@@ -138,9 +138,9 @@ void displayB() //display from beginning
 		printf("%d", count); //temporary code to check count
 		printf("Customer's name:\n");
 		printf("%s", currec->customer);
-		printf("Customer's number:\n");
+		printf("\nCustomer's number:\n");
 		printf("%s", currec->customerNum);
-		printf("Customer's gender:\n");
+		printf("\nCustomer's gender:\n");
 		printf("%s", currec->gender);
 		printf("Order description:\n");
 		printf("%s", currec->orderDes);
