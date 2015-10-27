@@ -208,9 +208,9 @@ void deleteNode() //delete node at any position
 		printf("You gonna delete this\n"); //you gonna delete currec!
 		system("pause >nul");
 		if (currec->next != NULL) //if next of currec got something
-			currec->next->prev = currec->prev; //before deletion, currec's next previous (currec itself) to currec's previous
+			currec->next->prev = currec->prev; //(currec's next)'s previous will be (currec's previous). So currec's chain is breaked.
 		if (currec->prev != NULL) //if prev of currec got something
-			currec->prev->next = currec->next; //before deletion, currec's previous next (currec itself) to currec's next
+			currec->prev->next = currec->next; //(currec's previous)'s next will be (currec's next). Currec's chain is fully breaked!
 		if (headcus == currec) //if deleting headcus
 			headcus = currec->next; //next of the headcus to be deleted will be the new headcus
 		if (endcus == currec) //if deleting endcus
@@ -220,6 +220,11 @@ void deleteNode() //delete node at any position
 		count--;
 	}
 }
+
+/* for line 211 and 213 if u still not clear, imagine a,b,c as the doubly linked list and currec = b.
+Now i want to delete b, (b->next)->previous is c->previous, i set c->previous is equal to b->previous.
+Then, (b->prev)->next is a->next, set a->next is euqal to b->next! So all chains chained to b is breaked and a is chained with
+c and vice versa. */
 
 //i don't know why below codes have problem. So I create new codes for this as above.
 //anyone who can diagnose the problem i give u credit
