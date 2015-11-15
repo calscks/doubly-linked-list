@@ -12,7 +12,7 @@ typedef struct NODE
 	struct NODE *prev;
 	struct NODE *next;
 }node;
-node *headcus, *endcus, *temp, *currec;
+node *headcus, *endcus, *temp, *currec, *forcount;
 
 void create();
 
@@ -31,5 +31,7 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]);
 void deleteNode();
 
 void writefile();
+
+void readfile();
 
 #endif

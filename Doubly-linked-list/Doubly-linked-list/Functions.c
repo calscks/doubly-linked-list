@@ -205,7 +205,7 @@ void deleteNode() //delete node at any position
 		for (i; i < pos; i++)
 			currec = currec->next;
 		printf("%2d. %s", i, currec->customer);
-		printf("You gonna delete this\n"); //you gonna delete currec!
+		printf("\nYou are deleting this customer.\n"); //you gonna delete currec!
 		system("pause >nul");
 		if (currec->next != NULL) //if next of currec got something
 			currec->next->prev = currec->prev; //(currec's next)'s previous will be (currec's previous). So currec's chain is breaked.
@@ -237,13 +237,71 @@ void writefile()
 	while (currec)
 	{
 		fwrite(currec->customer, sizeof(currec->customer), 1, f);
-		fwrite(currec->customerAdd, sizeof(currec->customerAdd), 1, f);
 		fwrite(currec->customerNum, sizeof(currec->customerNum), 1, f);
 		fwrite(currec->gender, sizeof(currec->gender), 1, f);
 		fwrite(currec->orderDes, sizeof(currec->orderDes), 1, f);
-		printf("Write successful\n");
+		fwrite(currec->customerAdd, sizeof(currec->customerAdd), 1, f);
+		printf("Save successful\n");
 		currec = currec->next;
 	}
+	fclose(f);
+	system("pause >nul");
+}
+
+void readfile()
+{
+	FILE *f;
+	
+	if ((f = fopen("saves.dat", "rb")) == NULL)
+	{
+		printf("The saved file does not exist.\n");
+		system("pause >nul");
+		return;
+	}
+
+	int counter = 0;
+	while (!feof(f))
+	{
+		temp = malloc(sizeof(node));
+		temp->prev = NULL;
+		temp->next = NULL;
+
+		fread(temp->customer, sizeof(temp->customer), 1, f);
+		fread(temp->customerNum, sizeof(temp->customerNum), 1, f);
+		fread(temp->gender, sizeof(temp->gender), 1, f);
+		fread(temp->orderDes, sizeof(temp->orderDes), 1, f);
+		fread(temp->customerAdd, sizeof(temp->customerAdd), 1, f);
+		count++;
+		counter++;
+		if (!headcus) //==NULL
+		{
+			headcus = temp;
+		}
+		if (endcus) //!=NULL
+		{
+			endcus->next = temp;
+			temp->prev = endcus;
+		}
+		endcus = temp;
+		printf("Load successful\n");
+		
+	}
+	fclose(f);
+
+	currec = headcus;
+	int i = 1, position = counter; //i'm deleting the last node. no idea why but it retrieves random characters for last node so deletion is needed.
+	for (i; i < position; i++)
+		currec = currec->next;
+	if (currec->next != NULL)
+		currec->next->prev = currec->prev;
+	if (currec->prev != NULL)
+		currec->prev->next = currec->next;
+	if (headcus == currec)
+		headcus = currec->next;
+	if (endcus == currec)
+		endcus = currec->prev;
+	free(currec);
+	count--;
 	system("pause >nul");
 }
 

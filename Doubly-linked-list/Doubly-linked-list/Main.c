@@ -13,7 +13,8 @@ void main()
 	{
 		system("cls");
 		printf("Linked list\n\n");
-		printf("1. Insert at the beginning\n2. Insert to the end\n3. Print from beginning\n4. Print from the end\n5. Delete from any position\n6. Save\n7. Quit system\nSelection: ");
+		printf("1. Insert at the beginning\n2. Insert to the end\n3. Print from beginning\n4. Print from the end\n");
+		printf("5. Delete from any position\n6. Load\n7. Save\n8. Quit system\nSelection: ");
 		fflush(stdin);
 		scanf("%d", &choice);
 
@@ -45,9 +46,12 @@ void main()
 			deleteNode();
 			break;
 		case 6:
-			writefile();
+			readfile();
 			break;
 		case 7:
+			writefile();
+			break;
+		case 8:
 			exit(0);
 			break;
 		default:

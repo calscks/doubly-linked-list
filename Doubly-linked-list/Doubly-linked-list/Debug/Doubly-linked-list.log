@@ -1,4 +1,4 @@
-﻿Build started 15/11/2015 02:03:17.
+﻿Build started 15/11/2015 16:58:05.
      1>Project "C:\Users\User\Desktop\APU Stuffs\SEM4\DBDS\Assignment\doubly-linked-list\Doubly-linked-list\Doubly-linked-list\Doubly-linked-list.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Functions.c
@@ -17,6 +17,8 @@
                  d:\microsoft visual studio 12.0\vc\include\stdio.h(283) : see declaration of 'scanf'
      1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(235): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  d:\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\users\user\desktop\apu stuffs\sem4\dbds\assignment\doubly-linked-list\doubly-linked-list\doubly-linked-list\functions.c(255): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
        Link:
          D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\APU Stuffs\SEM4\DBDS\Assignment\doubly-linked-list\Doubly-linked-list\Debug\Doubly-linked-list.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Desktop\APU Stuffs\SEM4\DBDS\Assignment\doubly-linked-list\Doubly-linked-list\Debug\Doubly-linked-list.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\APU Stuffs\SEM4\DBDS\Assignment\doubly-linked-list\Doubly-linked-list\Debug\Doubly-linked-list.lib" /MACHINE:X86 Debug\Functions.obj
          Debug\Main.obj
@@ -25,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.47
+Time Elapsed 00:00:00.33
