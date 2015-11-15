@@ -325,6 +325,45 @@ void readfile()
 	system("pause >nul");
 }
 
+void search()
+{
+	char a[l];
+
+	if (temp == NULL)
+	{
+		printf("\nList empty to search for data");
+		return 1;
+	}
+
+	else
+	{
+		printf("Enter customer's name:\n");
+		do
+		{
+			fflush(stdin);
+			fgets(&a, l, stdin);
+			if (a[strlen(a) - 1] == '\n')
+				a[strlen(a) - 1] = 0;
+		} while (validchar(true));
+
+		while (temp != NULL)
+		{
+			if (!strcmp(temp->customer, a))
+			{
+				printf("\nData found in %d position", count);
+				system("pause >nul");
+				return 1;
+			}
+			else
+			{
+				temp = temp->next;
+				count++;
+			}
+		}
+		printf("\n%s not found in list", a);
+	}
+}
+
 /* for line 211 and 213 if u still not clear, imagine a,b,c as the doubly linked list and currec = b.
 Now i want to delete b, (b->next)->previous is c->previous, i set c->previous is equal to b->previous.
 Then, (b->prev)->next is a->next, set a->next is euqal to b->next! So all chains chained to b is breaked and a is chained with

@@ -34,4 +34,6 @@ void writefile();
 
 void readfile();
 
+void search();
+
 #endif
