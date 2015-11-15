@@ -62,7 +62,7 @@ _Bool validnum() //simple input checking for customerNum
 		isdigit requires <ctype.h>*/
 		if (!isdigit(temp->customerNum[n]))
 		{
-			printf("You need to input numerical values only! Please try again\n");
+			printf("You need to input numerical values only! Please try again:\n");
 			return true;
 		}
 	}
@@ -84,7 +84,7 @@ _Bool validchar() //simple input checking for customer name
 	{
 		if (isdigit(temp->customer[ch]))
 		{
-			printf("Name shall not consist of numbers! Please try again\n");
+			printf("Name shall not consist of numbers! Please try again:\n");
 			return true;
 		}
 	}
@@ -98,7 +98,7 @@ void insertB() //insert at beginning
 	{
 		endcus = temp;
 	}
-	if (headcus) // if headcus != NULL
+	if (headcus != NULL)
 	{
 		temp->next = headcus;
 		headcus->prev = temp;
@@ -135,19 +135,24 @@ void displayB() //display from beginning
 
 	while (currec)
 	{
-		printf("%d", count); //temporary code to check count for debug purpose
-		printf("Customer's name:\n");
+		system("cls");
+		printf("Customer's name: ");
 		printf("%s", currec->customer);
-		printf("\nCustomer's number:\n");
+		printf("\nCustomer's number: ");
 		printf("%s", currec->customerNum);
-		printf("\nCustomer's gender:\n");
+		printf("\nCustomer's gender: ");
 		printf("%s", currec->gender);
-		printf("Order description:\n");
+		printf("Order description: ");
 		printf("%s", currec->orderDes);
-		printf("Customer's address:\n");
+		printf("Customer's address: ");
 		printf("%s", currec->customerAdd);
 		currec = currec->next;
-		system("pause");
+
+		if (currec != NULL)
+			printf("Press any key to load next customer.");
+		else
+			printf("No more customer to show. Press any key to return back to menu.");
+		system("pause >nul");
 	}
 }
 
@@ -156,24 +161,30 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]) //display f
 	currec = endcus;
 	while (currec)
 	{
+		system("cls");
 		a = currec->customer;
 		b = currec->customerNum;
 		c = currec->gender;
 		d = currec->orderDes;
 		e = currec->customerAdd;
-		printf("%d", count); //temporary code to check count
-		printf("Customer's name:\n");
+		printf("Customer's name: ");
 		printf("%s", a);
-		printf("Customer's number:\n");
+		printf("\nCustomer's number: ");
 		printf("%s", b);
-		printf("Customer's gender:\n");
+		printf("\nCustomer's gender: ");
 		printf("%s", c);
-		printf("Order description:\n");
+		printf("Order description: ");
 		printf("%s", d);
-		printf("Customer's address:\n");
+		printf("Customer's address: ");
 		printf("%s", e);
 		currec = currec->prev;
-		system("pause");
+
+		if (currec != NULL)
+			printf("Press any key to load next customer.");
+		else
+			printf("No more customer to show. Press any key to return back to menu.");
+		
+		system("pause >nul");
 	}
 }
 
@@ -259,10 +270,19 @@ void readfile()
 		return;
 	}
 
+	while (headcus)
+	{
+		currec = headcus;
+		headcus = headcus->next;
+		free(currec);
+	}
+	//above code has problems, what i am doing is deleting the whole linked list but gt problem
+
 	int counter = 0;
 	while (!feof(f))
 	{
-		temp = malloc(sizeof(node));
+		temp = malloc(sizeof(node)); //PROBLEM: after clearance, vs will automatically breaks here, and when continue,
+		//print from beginning no prob, print from end keep looping e.g. b->a->b->a->b...
 		temp->prev = NULL;
 		temp->next = NULL;
 
@@ -283,8 +303,6 @@ void readfile()
 			temp->prev = endcus;
 		}
 		endcus = temp;
-		printf("Load successful\n");
-		
 	}
 	fclose(f);
 
@@ -302,6 +320,8 @@ void readfile()
 		endcus = currec->prev;
 	free(currec);
 	count--;
+	for (int ii = 1; ii < counter; ii++)
+	printf("Load successful\n");
 	system("pause >nul");
 }
 
@@ -309,61 +329,3 @@ void readfile()
 Now i want to delete b, (b->next)->previous is c->previous, i set c->previous is equal to b->previous.
 Then, (b->prev)->next is a->next, set a->next is euqal to b->next! So all chains chained to b is breaked and a is chained with
 c and vice versa. */
-
-//i don't know why below codes have problem. So I create new codes for this as above.
-//anyone who can diagnose the problem i give u credit
-/*
-void deleteNode()
-{
-int i = 1, pos;
-
-printf("\nEnter position to delete:\n");
-scanf("%d", &pos);
-currec = headcus;
-
-if ((pos < 1) || (pos >= count + 1))
-{
-printf("\nError : Position out of range to delete");
-return;
-}
-if (headcus == NULL)
-{
-printf("\nEmpty linked list.");
-return;
-}
-else
-{
-while (i < pos)
-{
-currec = currec->next;
-i++;
-}
-if (i == 1)
-{
-if (currec->next == NULL)
-{
-printf("Node deleted from list: %d\n", pos);
-free(currec);
-currec = headcus = NULL;
-return;
-}
-}
-if (currec->next == NULL)
-{
-currec->prev->next = NULL;
-free(currec);
-printf("Node deleted from list: %d\n", pos);
-system("pause >nul");
-return;
-}
-currec->next->prev = currec->prev;
-if (i != 1)
-headcus = currec->next;
-if (i = 1)
-headcus = currec->next;
-printf("\nNode deleted");
-free(currec);
-system("pause >nul");
-}
-count--;
-}*/
