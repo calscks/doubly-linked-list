@@ -12,7 +12,7 @@ typedef struct NODE
 	struct NODE *prev;
 	struct NODE *next;
 }node;
-node *headcus, *endcus, *temp, *currec, *forcount;
+node *headcus, *endcus, *temp, *currec;
 
 void create();
 
