@@ -30,4 +30,6 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]);
 
 void deleteNode();
 
+void writefile();
+
 #endif

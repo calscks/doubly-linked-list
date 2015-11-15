@@ -135,7 +135,7 @@ void displayB() //display from beginning
 
 	while (currec)
 	{
-		printf("%d", count); //temporary code to check count
+		printf("%d", count); //temporary code to check count for debug purpose
 		printf("Customer's name:\n");
 		printf("%s", currec->customer);
 		printf("\nCustomer's number:\n");
@@ -219,6 +219,32 @@ void deleteNode() //delete node at any position
 		printf("deleted\n");
 		count--;
 	}
+}
+
+void writefile()
+{
+	FILE *f;
+	currec = headcus;
+	if (headcus == NULL)
+	{
+		printf("There is nothing to be saved. ");
+		system("pause >nul");
+		return;
+	}
+
+	f = fopen("saves.dat", "wb+");
+	
+	while (currec)
+	{
+		fwrite(currec->customer, sizeof(currec->customer), 1, f);
+		fwrite(currec->customerAdd, sizeof(currec->customerAdd), 1, f);
+		fwrite(currec->customerNum, sizeof(currec->customerNum), 1, f);
+		fwrite(currec->gender, sizeof(currec->gender), 1, f);
+		fwrite(currec->orderDes, sizeof(currec->orderDes), 1, f);
+		printf("Write successful\n");
+		currec = currec->next;
+	}
+	system("pause >nul");
 }
 
 /* for line 211 and 213 if u still not clear, imagine a,b,c as the doubly linked list and currec = b.
