@@ -338,7 +338,8 @@ void readfile()
 void search()
 {
 	char a[l];
-
+	int counter = 1;
+	temp = headcus;
 	if (temp == NULL)
 	{
 		printf("\nList empty to search for data");
@@ -360,14 +361,14 @@ void search()
 		{
 			if (!strcmp(temp->customer, a))
 			{
-				printf("\nData found in %d position", count);
+				printf("\nData found in %d position", counter);
 				system("pause >nul");
 				return 1;
 			}
 			else
 			{
 				temp = temp->next;
-				count++;
+				counter++;
 			}
 		}
 		printf("\n%s not found in list", a);
