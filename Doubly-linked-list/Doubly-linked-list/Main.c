@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "Universal.h"
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 
 void main()
 {

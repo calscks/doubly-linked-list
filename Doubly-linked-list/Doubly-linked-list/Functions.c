@@ -273,16 +273,26 @@ void readfile()
 	while (headcus)
 	{
 		currec = headcus;
-		headcus = headcus->next;
+		if (currec->next != NULL)
+			currec->next->prev = currec->prev;
+		if (currec->prev != NULL)
+			currec->prev->next = currec->next;
+		if (headcus == currec)
+			headcus = currec->next;
+		if (endcus == currec)
+			endcus = currec->prev; //breaking the node chain in a safer way!!
 		free(currec);
+		
 	}
-	//above code has problems, what i am doing is deleting the whole linked list but gt problem
+	//above codes have problems, what i am doing is deleting the whole linked list but gt problem
+	//above codes have NO MORE PROBS CUZ I FIXED IT USING A SAFER WAY
 
 	int counter = 0;
 	while (!feof(f))
 	{
 		temp = malloc(sizeof(node)); //PROBLEM: after clearance, vs will automatically breaks here, and when continue,
 		//print from beginning no prob, print from end keep looping e.g. b->a->b->a->b...
+		//PROB FIXED
 		temp->prev = NULL;
 		temp->next = NULL;
 
