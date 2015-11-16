@@ -57,6 +57,9 @@ void main()
 		case 9:
 			exit(0);
 			break;
+		/*case 10:
+			sortNameAsc();
+			break;*/
 		default:
 			printf("\nInvalid input!!\n\a");
 			system("pause");

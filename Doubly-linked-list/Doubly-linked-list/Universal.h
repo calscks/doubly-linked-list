@@ -36,4 +36,6 @@ void readfile();
 
 void search();
 
+void sortNameAsc();
+
 #endif

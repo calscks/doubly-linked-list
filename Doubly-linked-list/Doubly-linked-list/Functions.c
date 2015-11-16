@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "Universal.h"
 
-int count = 0;// we use count to determine our structures' position.
+int count = 0;// we use count to determine number of our structures
 
 void create() //create a new struct for new customer inputs
 {
@@ -317,7 +317,7 @@ void readfile()
 	fclose(f);
 
 	currec = headcus;
-	int i = 1, position = counter; //i'm deleting the last node. no idea why but it retrieves random characters for last node so deletion is needed.
+	int i = 1, position = counter; //i'm deleting the last node that was retrieved as a null or /0 value.
 	for (i; i < position; i++)
 		currec = currec->next;
 	if (currec->next != NULL)
@@ -385,6 +385,73 @@ void search()
 		system("pause");
 	}
 }
+
+//void sortNameAsc()
+//{
+//	if (headcus == NULL)
+//	{
+//		printf("Nothing to sort and display.");
+//		system("pause >nul");
+//		return;
+//	}
+//
+//	char **name = malloc(sizeof (*name) + (1 * sizeof (**name)));
+//	char *temp_name = malloc(sizeof (*temp_name));
+//	int i = 0, j = 0;
+//
+//	node *currec = headcus;
+//
+//	while (currec)
+//	{
+//		name[i] = currec->customer;
+//		currec = currec->next;
+//		i++;
+//	}
+//
+//	for (i = 0; i < count; i++)
+//	{
+//		for (j = 0; j < count; j++)
+//		{
+//			if (strcmp(name[j], name[i]) > 0)
+//			{
+//				strcpy(temp_name, name[i]);
+//				strcpy(name[i], name[j]);
+//				strcpy(name[j], temp_name);
+//			}
+//		}
+//	}
+//
+//	printf("Customer name and data in ascending order:\n");
+//	for (i = 0; i < count; i++)
+//	{
+//		currec = headcus;
+//		while (currec->customer != name[i])
+//		{
+//			currec = currec->next;
+//		}
+//		system("cls");
+//		printf("%s.\n", name[i]);
+//		printf("Customer's name: ");
+//		printf("%s", currec->customer);
+//		printf("\nCustomer's number: ");
+//		printf("%s", currec->customerNum);
+//		printf("\nCustomer's gender: ");
+//		printf("%s", currec->gender);
+//		printf("Order description: ");
+//		printf("%s", currec->orderDes);
+//		printf("Customer's address: ");
+//		printf("%s", currec->customerAdd);
+//
+//		if (currec != NULL)
+//			printf("Press any key to load next customer.");
+//		else
+//			printf("No more customer to show. Press any key to return back to menu.");
+//		system("pause >nul");
+//	}
+//	free(temp_name);
+//	free(*name);
+//	free(name);
+//}
 
 /* for line 211 and 213 if u still not clear, imagine a,b,c as the doubly linked list and currec = b.
 Now i want to delete b, (b->next)->previous is c->previous, i set c->previous is equal to b->previous.
