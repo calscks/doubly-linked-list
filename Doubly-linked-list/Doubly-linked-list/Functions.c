@@ -342,7 +342,8 @@ void search()
 	temp = headcus;
 	if (temp == NULL)
 	{
-		printf("\nList empty to search for data");
+		printf("\nList empty to search for data\n\a");
+		system("pause");
 		return 1;
 	}
 
@@ -361,7 +362,16 @@ void search()
 		{
 			if (!strcmp(temp->customer, a))
 			{
-				printf("\nData found in %d position", counter);
+				printf("Customer's name: ");
+				printf("%s", temp->customer);
+				printf("\nCustomer's number: ");
+				printf("%s", temp->customerNum);
+				printf("\nCustomer's gender: ");
+				printf("%s", temp->gender);
+				printf("Order description: ");
+				printf("%s", temp->orderDes);
+				printf("Customer's address: ");
+				printf("%s", temp->customerAdd);
 				system("pause >nul");
 				return 1;
 			}
@@ -371,7 +381,8 @@ void search()
 				counter++;
 			}
 		}
-		printf("\n%s not found in list", a);
+		printf("\n%s not found in list\n", a);
+		system("pause");
 	}
 }
 
