@@ -20,6 +20,8 @@ _Bool validnum();
 
 _Bool validchar();
 
+_Bool validgend();
+
 void insertB();
 
 void insertE();

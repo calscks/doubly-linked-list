@@ -17,11 +17,11 @@ void create() //create a new struct for new customer inputs
 	{
 		fflush(stdin);
 		fgets(&temp->customer, l, stdin);
-		/* funny thing is that fgets actually takes \n as 1 char! for example
+		/* fgets actually takes \n as 1 char. for example
 		input aaaa and then enter, the strlen will be 5 because "aaaa\n". below is the fix */
 		if (temp->customer[strlen(temp->customer) - 1] == '\n')
 			temp->customer[strlen(temp->customer) - 1] = 0;
-	} while (validchar(true));
+	} while (validchar(true)); //this is the boolean function
 
 	printf("Enter customer's number:\n");
 	do
@@ -30,11 +30,17 @@ void create() //create a new struct for new customer inputs
 		fgets(&temp->customerNum, l, stdin);
 		if (temp->customerNum[strlen(temp->customerNum) - 1] == '\n')
 			temp->customerNum[strlen(temp->customerNum) - 1] = 0;
-	} while (validnum(true));
+	} while (validnum(true)); //this is the boolean function
 
 	printf("Enter customer's gender:\n");
-	fflush(stdin);
-	fgets(&temp->gender, l, stdin);
+	do
+	{
+		fflush(stdin);
+		fgets(&temp->gender, l, stdin);
+		if (temp->gender[strlen(temp->gender) - 1] == '\n')
+			temp->gender[strlen(temp->gender) - 1] = 0;
+	} while (validgend(true)); //boolean function to check gender
+
 	printf("Enter order description:\n");
 	fflush(stdin);
 	fgets(&temp->orderDes, l, stdin);
@@ -72,7 +78,7 @@ _Bool validnum() //simple input checking for customerNum
 _Bool validchar() //simple input checking for customer name
 {
 	int len, ch;
-	len = strlen(temp->customer);
+	len = strlen(temp->customer); //string length
 
 	if (len == 0)
 	{
@@ -91,19 +97,41 @@ _Bool validchar() //simple input checking for customer name
 	return false;
 }
 
+_Bool validgend() //gender validation
+{
+	char gend[8][10] = { "Male", "M", "male", "m", "Female", "F", "female", "f" }; //2-D arrays to store strings
+	int gendin = strlen(temp->gender), i;
+
+	if (gendin == 0)
+	{
+		printf("Please at least enter something\n");
+		return true;
+	}
+
+	for (i = 0; i < 8; i++)
+	{
+		if (strcmp(temp->gender, gend[i]) == 0)
+		{
+			return false;
+		};
+	}
+	printf("Gender is not valid. Please try again:\n");
+	return true;
+}
+
 void insertB() //insert at beginning
 {
-	create();
+	create(); // call node create
 	if (endcus == NULL)
 	{
-		endcus = temp;
+		endcus = temp; //if endcus is nothing, your endcus is the temp (newly created node)
 	}
 	if (headcus != NULL)
 	{
-		temp->next = headcus;
-		headcus->prev = temp;
+		temp->next = headcus; //when original headcus is not empty, the next of your newly create node will be that headcus
+		headcus->prev = temp; //the prev of that headcus is your new node
 	}
-	headcus = temp;
+	headcus = temp; //set your new node as headcus
 }
 
 void insertE() //insert to the end
@@ -133,7 +161,7 @@ void displayB() //display from beginning
 	}
 	printf("\nLinked list elements from begining : \n");
 
-	while (currec)
+	while (currec) //remember this: (xx) means xx != NULL, (!xx) means xx == NULL
 	{
 		system("cls");
 		printf("Customer's name: ");
@@ -146,7 +174,7 @@ void displayB() //display from beginning
 		printf("%s", currec->orderDes);
 		printf("Customer's address: ");
 		printf("%s", currec->customerAdd);
-		currec = currec->next;
+		currec = currec->next; //iterate to next record and print again
 
 		if (currec != NULL)
 			printf("Press any key to load next customer.");
@@ -156,7 +184,7 @@ void displayB() //display from beginning
 	}
 }
 
-void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]) //display from the end
+void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]) //display from the end, another way to display
 {
 	currec = endcus;
 	while (currec)
@@ -177,7 +205,7 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]) //display f
 		printf("%s", d);
 		printf("Customer's address: ");
 		printf("%s", e);
-		currec = currec->prev;
+		currec = currec->prev; //iterate from endcus to first (last to first)
 
 		if (currec != NULL)
 			printf("Press any key to load next customer.");
@@ -226,13 +254,13 @@ void deleteNode() //delete node at any position
 			headcus = currec->next; //next of the headcus to be deleted will be the new headcus
 		if (endcus == currec) //if deleting endcus
 			endcus = currec->prev; //previous of the endcus to be deleted will be the new endcus
-		free(currec);
+		free(currec); //free the memory!
 		printf("deleted\n");
-		count--;
+		count--; //deduct the count of total no of nodes
 	}
 }
 
-void writefile()
+void writefile() //saving data
 {
 	FILE *f;
 	currec = headcus;
@@ -243,7 +271,7 @@ void writefile()
 		return;
 	}
 
-	f = fopen("saves.dat", "wb+");
+	f = fopen("saves.dat", "wb+"); //open (create) save.dat as reading and writing binary
 	
 	while (currec)
 	{
@@ -253,7 +281,7 @@ void writefile()
 		fwrite(currec->orderDes, sizeof(currec->orderDes), 1, f);
 		fwrite(currec->customerAdd, sizeof(currec->customerAdd), 1, f);
 		printf("Save successful\n");
-		currec = currec->next;
+		currec = currec->next; //write all the nodes into file
 	}
 	fclose(f);
 	system("pause >nul");
@@ -270,7 +298,7 @@ void readfile()
 		return;
 	}
 
-	while (headcus)
+	while (headcus) //deletion
 	{
 		currec = headcus;
 		if (currec->next != NULL)
@@ -386,72 +414,6 @@ void search()
 	}
 }
 
-//void sortNameAsc()
-//{
-//	if (headcus == NULL)
-//	{
-//		printf("Nothing to sort and display.");
-//		system("pause >nul");
-//		return;
-//	}
-//
-//	char **name = malloc(sizeof (*name) + (1 * sizeof (**name)));
-//	char *temp_name = malloc(sizeof (*temp_name));
-//	int i = 0, j = 0;
-//
-//	node *currec = headcus;
-//
-//	while (currec)
-//	{
-//		name[i] = currec->customer;
-//		currec = currec->next;
-//		i++;
-//	}
-//
-//	for (i = 0; i < count; i++)
-//	{
-//		for (j = 0; j < count; j++)
-//		{
-//			if (strcmp(name[j], name[i]) > 0)
-//			{
-//				strcpy(temp_name, name[i]);
-//				strcpy(name[i], name[j]);
-//				strcpy(name[j], temp_name);
-//			}
-//		}
-//	}
-//
-//	printf("Customer name and data in ascending order:\n");
-//	for (i = 0; i < count; i++)
-//	{
-//		currec = headcus;
-//		while (currec->customer != name[i])
-//		{
-//			currec = currec->next;
-//		}
-//		system("cls");
-//		printf("%s.\n", name[i]);
-//		printf("Customer's name: ");
-//		printf("%s", currec->customer);
-//		printf("\nCustomer's number: ");
-//		printf("%s", currec->customerNum);
-//		printf("\nCustomer's gender: ");
-//		printf("%s", currec->gender);
-//		printf("Order description: ");
-//		printf("%s", currec->orderDes);
-//		printf("Customer's address: ");
-//		printf("%s", currec->customerAdd);
-//
-//		if (currec != NULL)
-//			printf("Press any key to load next customer.");
-//		else
-//			printf("No more customer to show. Press any key to return back to menu.");
-//		system("pause >nul");
-//	}
-//	free(temp_name);
-//	free(*name);
-//	free(name);
-//}
 
 /* for line 211 and 213 if u still not clear, imagine a,b,c as the doubly linked list and currec = b.
 Now i want to delete b, (b->next)->previous is c->previous, i set c->previous is equal to b->previous.
