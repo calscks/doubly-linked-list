@@ -3,11 +3,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "Universal.h"
-//#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 void main()
 {
-	//system("color f0");
 	int choice;
 	while (1)
 	{
@@ -57,9 +56,6 @@ void main()
 		case 9:
 			exit(0);
 			break;
-		/*case 10:
-			sortNameAsc();
-			break;*/
 		default:
 			printf("\nInvalid input!!\n\a");
 			system("pause");
