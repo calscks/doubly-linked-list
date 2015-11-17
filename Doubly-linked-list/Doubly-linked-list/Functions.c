@@ -170,7 +170,7 @@ void displayB() //display from beginning
 		printf("%s", currec->customerNum);
 		printf("\nCustomer's gender: ");
 		printf("%s", currec->gender);
-		printf("Order description: ");
+		printf("\nOrder description: ");
 		printf("%s", currec->orderDes);
 		printf("Customer's address: ");
 		printf("%s", currec->customerAdd);
@@ -201,7 +201,7 @@ void displayE(char a[l], char b[l], char c[l], char d[l], char e[l]) //display f
 		printf("%s", b);
 		printf("\nCustomer's gender: ");
 		printf("%s", c);
-		printf("Order description: ");
+		printf("\nOrder description: ");
 		printf("%s", d);
 		printf("Customer's address: ");
 		printf("%s", e);
@@ -396,7 +396,7 @@ void search()
 				printf("%s", temp->customerNum);
 				printf("\nCustomer's gender: ");
 				printf("%s", temp->gender);
-				printf("Order description: ");
+				printf("\nOrder description: ");
 				printf("%s", temp->orderDes);
 				printf("Customer's address: ");
 				printf("%s", temp->customerAdd);
