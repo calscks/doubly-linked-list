@@ -128,7 +128,8 @@ void insertB() //insert at beginning
 	}
 	if (headcus != NULL)
 	{
-		temp->next = headcus; //when original headcus is not empty, the next of your newly create node will be that headcus
+		temp->next = headcus; //when original headcus is not empty, 
+		//the next of your newly create node will be that headcus
 		headcus->prev = temp; //the prev of that headcus is your new node
 	}
 	headcus = temp; //set your new node as headcus
